@@ -11,12 +11,12 @@
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "C:\\RyanTools\\mingw64\\bin",
+            "cwd": "D:\\MySoftwares\\mingw64\\bin",
             "environment": [],
             "externalConsole": false,
             "internalConsoleOptions": "neverOpen",
             "MIMode": "gdb",
-            "miDebuggerPath": "C:\\RyanTools\\mingw64\\bin\\gdb.exe",
+            "miDebuggerPath": "D:\\MySoftwares\\mingw64\\bin\\gdb.exe",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
