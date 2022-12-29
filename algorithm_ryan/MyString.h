@@ -24,12 +24,21 @@ public:
         strcpy_s(m_str, strlen(str.m_str)+1, str.m_str);
     }
 
+#if 0
     //move constructor: shallow copy
     MyString(MyString&& str)
     {
         cout << "move constructor is called." << endl;
         m_str = str.m_str;
         str.m_str = nullptr;
+    }
+#endif
+
+    //move constructor: shallow copy
+    MyString(MyString&& str)
+    :m_str(std::move(str.m_str))
+    {
+        cout << "move constructor is called." << endl;
     }
 
     //copy assignment: deep copy
