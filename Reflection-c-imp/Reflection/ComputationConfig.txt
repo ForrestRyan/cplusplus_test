@@ -1,0 +1,6 @@
+[Algorithm]
+Name=DecisionTree
+Paras=90,67,42
+[Algorithm]
+Name=Bayes
+Paras=25,DecisionTreeRDD
