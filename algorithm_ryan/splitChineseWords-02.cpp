@@ -18,6 +18,7 @@ static int splitChineseCharacters(std::string& dccInput)
     std::string result = "";
     char dccChar;
     unsigned int dccInt, codePoint;
+    bool bPreChinese = true;
 
     if (dccInput.size() < 2) {
         return 0;
@@ -56,18 +57,25 @@ static int splitChineseCharacters(std::string& dccInput)
 
         if ((codePoint >= SIMPLIFIED_CHINESE_START && codePoint <= SIMPLIFIED_CHINESE_END)
             || (codePoint >= TRADITIONAL_CHINESE_START && codePoint <= TRADITIONAL_CHINESE_END)) {
-            result += " " + dccInput.substr(index, charLen) + " ";
+            if(!bPreChinese) {
+                result += " ";
+            }
+            result += dccInput.substr(index, charLen) + " ";
+            bPreChinese = true;
         } else {
             result += dccChar;
+            bPreChinese = false;
         }
         index += charLen;
     }
 
+    std::cout << "before: " << result.size() << std::endl;
     auto first = result.find_first_not_of(" ");
     auto last = result.find_last_not_of(" ");
-    result.substr(first, last - first + 1);
+    result = result.substr(first, last - first + 1);
     std::swap(dccInput, result);
-    
+    std::cout << "after: " << dccInput.size() << std::endl;
+
     return 0;
 }
 
@@ -84,7 +92,7 @@ void handle(std::vector<std::string>& items)
 }
 int main()
 {
-    std::string ddcInput = "我暫時操作唔到hello車內空氣123循環功能 肯德hello基颐123堤港店 朝阳区   "; // UTF-8 encoded string
+    std::string ddcInput = "我暫時操作唔到hello車內空氣123循環功能 肯德hello基颐123堤港店 朝阳区"; // UTF-8 encoded string
     std::vector<std::string> items;
     items.push_back(ddcInput);
     handle(items);
